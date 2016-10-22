@@ -1,7 +1,6 @@
+##n = sample size, nsamp = number of sample repeats, dist = distribution type, accepts either "n" for normale or "e" for exponential
+## note that you MUST include the " marks around n and e in the function call for it to take properly
 sampletake <- function(n, nsamp, dist) {
-  
-  ##n = sample size, nsamp = number of sample repeats, dist = distribution type, accepts either "n" for normale or "e" for exponential
-  
   ##start IF statement, these if statements generate the sample pool according to the distribution, either normal or exponential
   if (dist == "n") 
   {
