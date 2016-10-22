@@ -41,3 +41,5 @@ sampletake <- function(n, nsamp, dist) {
 }
 ##end function
 
+##Conclusions:
+## As we can see no matter if the distribution was normal or exponential the bootstrap sample we took remained approximately normal
