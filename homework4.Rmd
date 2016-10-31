@@ -1,0 +1,67 @@
+---
+title: "Homework 4"
+author: "Jesse Chen"
+date: "October 31, 2016"
+output: html_document
+---
+#The function
+```{r FinalFunction inputdata}
+sampletake <- function(n, nsamp, dist) {
+  
+  ##n = sample size, nsamp = number of sample repeats, dist = distribution type, accepts either "n" for normale or "e" for exponential
+  
+  ##start IF statement for plotting samplepool histograms
+  if (dist == "n") 
+  {
+    samplepool <- rnorm(n, 50, 4) 
+    hist(samplepool, main = paste("Histogram of Normal samplepool"), n, col = "red")
+  }
+  else if (dist == "e")
+  {
+    samplepool <- rexp(n)
+    hist(samplepool, main = paste("Histogram of Exponential samplepool"),n, col = "red")
+  }
+  ##end IF statement
+  sampleSD <- sd(samplepool)
+  samplemean <- mean(samplepool)
+  ##we must initalize the vector with the correct size before using it.
+  samplecontainer <- numeric(nsamp)
+  
+  ##start FOR loop
+  for (i in 1:nsamp){
+    thissample <- sample(samplepool, size = length(samplepool), replace = TRUE)
+    samplecontainer[i] <- mean(thissample)
+  }
+  ##end FOR loop
+  
+  ##start IF statement for plotting bootstrap histograms
+  if (dist == "n") 
+  {
+    hist(samplecontainer, main = paste("Normal distribution bootstrap"), n, col = "green")
+  }
+  else if (dist == "e")
+  {
+    hist(samplecontainer, main = paste("Exponential distribution bootstrap"), n, col = "green")
+  }
+  
+  return(c(sampleSD, samplemean, samplecontainer))
+}
+inputdata <- sampletake(100,100,"n")
+inputdata <- sampletake(100,100,"e")
+```
+
+## Explanation
+
+n = sample size
+
+nsamp = number of sample repeats
+
+dist = distribution type NOTE: accepts either "n" for normale or "e" for exponential, quotation marks MUST be included
+
+From the above histograms we can see that each of the samples taken still cluster around the mean in an approximately normal fashion.
+
+More importantly this holds true for both a normally distributed population and an exponentially distributed population
+
+
+
+
